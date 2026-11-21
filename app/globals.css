@@ -1,0 +1,56 @@
+@import "tailwindcss";
+
+@theme inline {
+  --font-sans: var(--font-jakarta), ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+
+@theme {
+  /* Hijau tua khas PKBM Rumah Hijau (sama dengan theme-color situs resminya) */
+  --color-ink: #0b3d2e;
+  --color-leaf: #17805c;
+
+  /* Abu-abu kehijauan, diambil dari seragam hijau-abu-abu para tutor */
+  --color-sage-50: #f3f6f4;
+  --color-sage-100: #e6ece9;
+  --color-sage-200: #d3ddd8;
+  --color-sage-300: #b4c4bc;
+  --color-sage-400: #8fa399;
+  --color-sage-500: #5c6f65;
+  --color-sage-600: #4a5b52;
+  --color-sage-700: #3a4943;
+  --color-sage-800: #2b3832;
+  --color-sage-900: #17251f;
+  --color-bark: #17251f;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 4.5rem; /* tinggi header tetap */
+  }
+  :focus-visible {
+    outline: 2px solid var(--color-leaf);
+    outline-offset: 2px;
+  }
+  ::selection {
+    background: #bfe6d3;
+    color: #0b3d2e;
+  }
+}
+
+/* Gerak hanya sebagai jawaban atas aksi pengguna (membuka dialog) */
+@keyframes sheet-up {
+  from { transform: translateY(24px); opacity: 0; }
+  to { transform: none; opacity: 1; }
+}
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+.sheet-panel { animation: sheet-up 0.22s ease-out; }
+.sheet-backdrop { animation: fade-in 0.2s ease-out; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .sheet-panel, .sheet-backdrop { animation: none; }
+}
